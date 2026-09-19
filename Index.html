@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Para Belén 🤍 | Una pequeña carta</title>
+<meta name="description" content="Una pequeña carta para una persona muy especial. 🌷">
+<meta name="theme-color" content="#FFF0F5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Para Belén 🤍 | Una pequeña carta">
+<meta property="og:description" content="Una pequeña carta para una persona muy especial. 🌷">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌷%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#FFFDFD; --blush:#FFF0F5; --pastel:#FADADD; --soft:#F4B6C2; --mid:#E89AA8;
+  --ink:#4A3A40; --gold:#D8B06A;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --shadow:0 10px 40px rgba(232,154,168,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);font-weight:300;color:var(--ink);background:var(--white);line-height:1.75;overflow-x:hidden;font-size:16px}
+body.locked{overflow:hidden;height:100dvh}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--mid);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;color:var(--ink)}
+h2{font-size:clamp(2rem,6.5vw,3.2rem);text-align:center;margin-bottom:1.6rem}
+section{position:relative;padding:5.5rem 1.25rem;overflow:hidden}
+.wrap{max-width:720px;margin:0 auto;position:relative;z-index:2}
+.wide{max-width:1000px}
+.center{text-align:center}
+
+/* ---------- floaters ---------- */
+.floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.fl{position:absolute;bottom:-40px;left:var(--x);font-size:var(--s);opacity:0;animation:rise var(--d) linear var(--dl) infinite;filter:drop-shadow(0 2px 4px rgba(232,154,168,.35))}
+@keyframes rise{0%{transform:translate3d(0,0,0) rotate(0);opacity:0}10%{opacity:.75}90%{opacity:.6}100%{transform:translate3d(var(--dx),-110vh,0) rotate(var(--r));opacity:0}}
+
+/* ---------- gate ---------- */
+#gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:1.5rem;
+  background:radial-gradient(120% 90% at 50% 0%,#fff 0%,var(--blush) 45%,var(--pastel) 100%);
+  transition:opacity 1.6s ease,filter 1.6s ease,transform 1.6s ease}
+#gate.opening{filter:blur(14px);opacity:0;transform:scale(1.06);pointer-events:none}
+.gate-card{position:relative;z-index:2;width:min(440px,100%);text-align:center;padding:2.6rem 1.6rem;border-radius:28px;
+  background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.8);box-shadow:var(--shadow)}
+.gate-card h1{font-size:clamp(2.2rem,9vw,3.1rem);margin-bottom:.7rem}
+.gate-card p{font-family:var(--serif);font-style:italic;font-size:1.3rem;margin-bottom:1.6rem}
+.gate-card input{width:100%;padding:1rem 1.2rem;border-radius:999px;border:1.5px solid var(--soft);background:var(--white);
+  font:inherit;font-size:1rem;text-align:center;color:var(--ink);margin-bottom:1rem}
+.gate-card input::placeholder{color:#b99aa3}
+.gate-card input:focus{outline:none;border-color:var(--mid);box-shadow:0 0 0 4px rgba(244,182,194,.35)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:52px;padding:.9rem 2rem;border-radius:999px;
+  background:linear-gradient(135deg,var(--soft),var(--mid));color:#fff;font-weight:500;letter-spacing:.02em;
+  box-shadow:0 8px 22px rgba(232,154,168,.4);transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(232,154,168,.5)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--white);color:var(--ink);border:1.5px solid var(--soft);box-shadow:none}
+.gate-msg{min-height:1.6em;margin-top:1rem;font-size:.95rem;color:var(--mid)}
+.shake{animation:shake .5s}
+@keyframes shake{20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
+
+/* ---------- main ---------- */
+main{opacity:0;transition:opacity 1.2s ease .3s}
+main.on{opacity:1}
+.bg-blush{background:linear-gradient(180deg,var(--white),var(--blush))}
+.bg-soft{background:var(--blush)}
+
+/* letter */
+.paper{position:relative;background:#fffdfb;border-radius:6px 6px 22px 22px;padding:2.6rem 1.6rem 2rem;box-shadow:var(--shadow),0 0 0 1px rgba(216,176,106,.25);
+  transform-origin:top center}
+.paper::before{content:"";position:absolute;inset:8px;border:1px solid rgba(216,176,106,.35);border-radius:4px 4px 16px 16px;pointer-events:none}
+.letter-open{animation:unfold 1.4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes unfold{from{transform:perspective(900px) rotateX(-70deg) scaleY(.4);opacity:0}to{transform:none;opacity:1}}
+.paper h2{margin-bottom:1.8rem}
+#letter p{font-family:var(--serif);font-size:1.28rem;line-height:1.75;margin-bottom:1rem;min-height:1px}
+#letter p.short{margin-bottom:.35rem}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--mid);vertical-align:-.15em;margin-left:2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.letter-actions{text-align:center;margin-top:1.4rem;min-height:52px}
+.letter-end{font-family:var(--serif);font-style:italic;font-size:1.5rem;text-align:center;margin-top:1.8rem;opacity:0;transition:opacity 1.4s}
+.letter-end.show{opacity:1}
+
+/* cards */
+.cards{display:grid;grid-template-columns:1fr;gap:1.1rem;margin-top:2.4rem}
+.card{position:relative;padding:1.8rem 1.5rem;border-radius:22px;background:rgba(255,255,255,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border:1px solid rgba(244,182,194,.45);box-shadow:0 6px 24px rgba(232,154,168,.14);cursor:pointer;transition:transform .35s,box-shadow .35s;text-align:left}
+.card h3{font-size:1.65rem;margin-bottom:.6rem}
+.card p{font-size:.98rem}
+.card .heart{position:absolute;top:1.1rem;right:1.2rem;font-size:1.3rem;filter:grayscale(1) opacity(.35);transition:filter .4s,transform .4s}
+.card:hover,.card.lit{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card:hover .heart,.card:focus-visible .heart,.card.lit .heart{filter:none;transform:scale(1.25)}
+.secret-heart{display:block;margin:2.2rem auto 0;font-size:.85rem;opacity:.35;padding:.6rem;transition:opacity .3s}
+.secret-heart:hover{opacity:.9}
+
+/* words */
+.words{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem 1rem;margin:2rem 0 1.6rem}
+.word{padding:.8rem 1.6rem;border-radius:999px;font-family:var(--serif);font-size:1.6rem;background:var(--white);border:1.5px solid var(--soft);
+  box-shadow:0 6px 18px rgba(232,154,168,.2);animation:bob 5s ease-in-out infinite;animation-delay:var(--dl);transition:background .3s,color .3s,border-color .3s}
+.word[aria-pressed="true"]{background:linear-gradient(135deg,var(--soft),var(--mid));color:#fff;border-color:transparent}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.word-desc{min-height:5.5rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.4rem;max-width:520px;margin:0 auto}
+
+/* gym */
+.gym{background:linear-gradient(180deg,var(--blush),var(--pastel) 140%)}
+.gym .lead{font-size:1.05rem;text-align:center}
+.gym .lead p{margin-bottom:.9rem}
+.gym-icon{display:block;margin:0 auto 1rem;font-size:2.6rem;padding:.4rem}
+.stage{position:relative;height:300px;margin:2.5rem auto 0;max-width:380px}
+.rack{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:100%;height:100%}
+.bar{position:absolute;left:50%;bottom:8px;width:100%;transform:translate(-50%,0);transition:transform 6s cubic-bezier(.4,0,.2,1)}
+.stage.up .bar{transform:translate(-50%,-190px)}
+.phrases{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.4rem;pointer-events:none}
+.phrases span{font-family:var(--serif);font-size:1.4rem;opacity:0;transform:translateY(10px);transition:opacity 1s,transform 1s;text-align:center;background:rgba(255,253,253,.78);padding:.15rem .9rem;border-radius:999px}
+.phrases span.show{opacity:1;transform:none}
+.phrases span:last-child{font-style:italic;color:#c76f82}
+
+/* question */
+.envelope{position:relative;width:min(340px,100%);margin:2rem auto 0;text-align:center}
+.env-closed{padding:3.2rem 1.5rem;border-radius:22px;background:linear-gradient(135deg,var(--pastel),var(--soft));box-shadow:var(--shadow);font-size:3.2rem;transition:transform .6s,opacity .6s}
+.env-open{display:none;padding:2.2rem 1.4rem;border-radius:22px;background:var(--white);box-shadow:var(--shadow);border:1px solid rgba(216,176,106,.35)}
+.envelope.open .env-closed{display:none}
+.envelope.open .env-open{display:block;animation:unfold 1s cubic-bezier(.2,.8,.2,1) both}
+.q-text{font-family:var(--serif);font-size:1.7rem;line-height:1.35;margin-bottom:1.6rem}
+.answers{display:flex;flex-direction:column;gap:.8rem;align-items:center}
+.answers .btn{width:100%;max-width:260px}
+.thanks{font-family:var(--serif);font-style:italic;font-size:1.6rem;margin-top:.6rem}
+
+/* music */
+.player{background:#fff;border-radius:26px;padding:1.8rem 1.4rem;box-shadow:var(--shadow);border:1px solid rgba(244,182,194,.4);text-align:center;position:relative;overflow:hidden}
+.player .quote{font-family:var(--serif);font-size:1.35rem;margin-bottom:1.4rem}
+.player .quote em{display:block;margin-top:.5rem}
+.viz{display:flex;justify-content:center;align-items:flex-end;gap:5px;height:44px;margin:1.2rem 0}
+.viz i{width:5px;height:8px;border-radius:4px;background:linear-gradient(var(--mid),var(--soft));transition:height .3s}
+.player.playing .viz i{animation:eq 1s ease-in-out infinite;animation-delay:calc(var(--n)*.09s)}
+@keyframes eq{0%,100%{height:8px}50%{height:calc(14px + var(--h)*1px)}}
+#yt-box{margin-top:1.4rem;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:var(--blush)}
+#yt-box iframe{width:100%;height:100%;border:0;display:block}
+.yt-fallback{display:none;margin-top:1rem;font-size:.9rem}
+.yt-fallback a{color:var(--mid)}
+
+/* future */
+.future{background:var(--blush);padding:7rem 1.25rem}
+.future .wrap{max-width:560px}
+.future p{font-family:var(--serif);font-size:1.4rem;margin-bottom:1.1rem;text-align:center}
+
+/* final */
+.final{min-height:100dvh;display:grid;place-items:center;text-align:center;background:linear-gradient(180deg,var(--blush),var(--white) 50%,var(--pastel));padding-bottom:8rem}
+.fline{opacity:0;transform:translateY(14px);transition:opacity 1.6s ease,transform 1.6s ease;font-family:var(--serif);font-size:clamp(1.5rem,5.5vw,2.2rem);margin-bottom:1.5rem;line-height:1.3}
+.fline.show{opacity:1;transform:none}
+.fline.big{font-size:clamp(2rem,8vw,3.4rem);font-style:italic}
+.fline.sign{font-size:1.7rem}
+.fline.emoji{font-size:1.4rem;letter-spacing:.3em}
+
+/* nav */
+.dock{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translate(-50%,120px);z-index:60;display:flex;gap:.2rem;padding:.35rem;
+  border-radius:999px;background:rgba(255,255,255,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--shadow);border:1px solid rgba(244,182,194,.5);transition:transform .8s}
+.dock.show{transform:translate(-50%,0)}
+.dock a{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;font-size:1.25rem;text-decoration:none;transition:background .3s}
+.dock a:hover{background:var(--blush)}
+
+/* toast + burst */
+.toast{position:fixed;left:50%;top:1.2rem;transform:translate(-50%,-140%);z-index:200;max-width:min(92vw,420px);padding:1rem 1.4rem;border-radius:20px;background:#fff;
+  box-shadow:var(--shadow);border:1px solid var(--soft);text-align:center;font-family:var(--serif);font-size:1.2rem;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.toast.show{transform:translate(-50%,0)}
+.burst{position:fixed;z-index:150;pointer-events:none;font-size:1.4rem;animation:burst 1.5s ease-out forwards}
+@keyframes burst{to{transform:translate(var(--bx),var(--by)) scale(1.3);opacity:0}}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease,transform 1s ease}
+.reveal.in{opacity:1;transform:none}
+footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
+
+@media(min-width:720px){
+  section{padding:7rem 2rem}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .card.wide-card{grid-column:span 2}
+  .paper{padding:3.4rem 3.4rem 2.4rem}
+  #letter p{font-size:1.4rem}
+  .answers{flex-direction:row;justify-content:center}
+}
+@media(min-width:1000px){.cards{grid-template-columns:repeat(3,1fr)}.card.wide-card{grid-column:span 1}}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal,.fline,.phrases span,.letter-end{opacity:1;transform:none}
+  .fl{display:none}
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- ========== PANTALLA INICIAL ========== -->
+<div id="gate" role="dialog" aria-labelledby="gate-title">
+  <div class="floaters" data-floaters="16"></div>
+  <div class="gate-card" id="gate-card">
+    <h1 id="gate-title">Tengo algo que decirte...</h1>
+    <p>Pero antes necesito saber que eres tú. 🤍</p>
+    <label for="name" class="sr" style="position:absolute;left:-9999px">Tu nombre</label>
+    <input id="name" type="text" placeholder="Escribe tu nombre..." autocomplete="off" autocapitalize="words" spellcheck="false">
+    <button class="btn" id="open-btn" type="button">Abrir mi carta 💌</button>
+    <div class="gate-msg" id="gate-msg" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ========== CARTA ========== -->
+<section id="carta" class="bg-blush">
+  <div class="floaters" data-floaters="8"></div>
+  <div class="wrap">
+    <div class="paper" id="paper">
+      <h2>Para Belén 🤍</h2>
+      <div id="letter" aria-live="off"></div>
+      <div class="letter-actions"><button class="btn ghost" id="skip-btn" type="button">Leer completa ✨</button></div>
+      <p class="letter-end" id="letter-end">Gracias por existir en este pequeño capítulo de mi vida. 🤍</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MOMENTOS ========== -->
+<section id="momentos" class="bg-soft">
+  <div class="wrap wide">
+    <h2 class="reveal">Pequeños momentos que se volvieron importantes</h2>
+    <div class="cards">
+      <article class="card reveal" tabindex="0"><span class="heart" aria-hidden="true">🤍</span><h3>🏋🏻‍♂️ Entrenamientos</h3><p>Quizás comenzó simplemente compartiendo horarios y entrenamientos, pero terminaste convirtiéndote en una de las razones por las que esos días se sienten diferentes.</p></article>
+      <article class="card reveal" tabindex="0"><span class="heart" aria-hidden="true">🤍</span><h3>💬 Conversaciones</h3><p>Me gusta que podamos hablar de nuestras vidas, nuestras historias y esas cosas que normalmente no contamos tan fácilmente.</p></article>
+      <article class="card reveal" tabindex="0"><span class="heart" aria-hidden="true">🤍</span><h3>🤍 Apoyo</h3><p>Gracias por estar ahí, por ayudarme y por hacerme sentir que no tengo que tener todo resuelto para poder seguir avanzando.</p></article>
+      <article class="card reveal" tabindex="0"><span class="heart" aria-hidden="true">🤍</span><h3>🌱 Crecer</h3><p>Quizás lo más bonito sea que no solamente estamos conociéndonos. También siento que, de alguna manera, estamos aprendiendo a conocernos a nosotros mismos.</p></article>
+      <article class="card wide-card reveal" tabindex="0"><span class="heart" aria-hidden="true">🤍</span><h3>✨ Tú</h3><p>Y entre todas esas pequeñas cosas, apareciste tú. Una persona linda, tierna y especial que consiguió quedarse en un lugar que normalmente mantengo cerrado.</p></article>
+    </div>
+    <button class="secret-heart" id="secret-heart" type="button" aria-label="Un pequeño corazón escondido">🤍</button>
+  </div>
+</section>
+
+<!-- ========== PALABRAS ========== -->
+<section id="palabras" class="bg-blush">
+  <div class="floaters" data-floaters="6"></div>
+  <div class="wrap center">
+    <h2 class="reveal">Si tuviera que describirte...</h2>
+    <p class="reveal">Toca cada palabra.</p>
+    <div class="words" id="words"></div>
+    <div class="word-desc" id="word-desc" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- ========== GIMNASIO ========== -->
+<section id="gimnasio" class="gym">
+  <div class="wrap">
+    <button class="gym-icon" id="gym-icon" type="button" aria-label="Icono de gimnasio">🏋🏻‍♂️</button>
+    <h2 class="reveal">Y sí... también tengo que agradecerte esto 🏋🏻‍♂️🤍</h2>
+    <div class="lead reveal">
+      <p>Gracias por ayudarme a seguir avanzando.</p>
+      <p>Por compartir entrenamientos.</p>
+      <p>Por motivarme.</p>
+      <p>Por estar ahí.</p>
+      <p>Y por hacer que ir al gimnasio tenga un significado un poquito diferente.</p>
+      <p>Quizás las pesas sean las mismas...</p>
+      <p><em>pero definitivamente los días se sienten distintos.</em></p>
+    </div>
+    <div class="stage" id="stage" aria-hidden="true">
+      <svg class="rack" viewBox="0 0 380 300" fill="none">
+        <rect x="40" y="20" width="8" height="270" rx="4" fill="#F4B6C2" opacity=".6"/>
+        <rect x="332" y="20" width="8" height="270" rx="4" fill="#F4B6C2" opacity=".6"/>
+        <rect x="20" y="288" width="340" height="6" rx="3" fill="#E89AA8" opacity=".5"/>
+      </svg>
+      <svg class="bar" viewBox="0 0 380 60" fill="none" height="60">
+        <rect x="20" y="27" width="340" height="6" rx="3" fill="#D8B06A"/>
+        <rect x="52" y="8" width="14" height="44" rx="5" fill="#E89AA8"/>
+        <rect x="70" y="14" width="10" height="32" rx="4" fill="#F4B6C2"/>
+        <rect x="314" y="8" width="14" height="44" rx="5" fill="#E89AA8"/>
+        <rect x="300" y="14" width="10" height="32" rx="4" fill="#F4B6C2"/>
+      </svg>
+      <div class="phrases" id="phrases">
+        <span>Un entrenamiento más.</span><span>Un día más.</span><span>Un poquito más fuerte.</span><span>Y quizás... un poquito más cerca.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PREGUNTA ========== -->
+<section id="pregunta" class="bg-blush">
+  <div class="floaters" data-floaters="6"></div>
+  <div class="wrap center">
+    <h2 class="reveal">Ahora quiero preguntarte algo...</h2>
+    <div class="envelope" id="envelope">
+      <div class="env-closed" aria-hidden="true">💌</div>
+      <div class="env-open">
+        <p class="q-text">¿Te gustaría que sigamos descubriendo juntos qué puede llegar a ser todo esto?</p>
+        <div class="answers" id="answers">
+          <button class="btn" type="button" data-ans>Sí 🤍</button>
+          <button class="btn ghost" type="button" data-ans>Obviamente 🙄💗</button>
+        </div>
+        <p class="thanks" id="thanks" hidden>Entonces sigamos escribiendo esta historia, sin apuros. ✨</p>
+      </div>
+    </div>
+    <div style="margin-top:1.6rem"><button class="btn" id="ask-btn" type="button">Abrir pregunta 💌</button></div>
+  </div>
+</section>
+
+<!-- ========== CANCIÓN ========== -->
+<section id="cancion" class="bg-soft">
+  <div class="wrap">
+    <h2 class="reveal">Una canción para ti 🎧🤍</h2>
+    <div class="player reveal" id="player">
+      <p class="quote">No sé si esta canción llegará a decir exactamente lo que yo quiero decirte...<em>Pero cuando la escuché, pensé en ti. 🤍</em></p>
+      <div class="viz" aria-hidden="true" id="viz"></div>
+      <button class="btn" id="play-btn" type="button" aria-pressed="false">▶ Reproducir</button>
+      <div id="yt-box"><div id="yt"></div></div>
+      <p class="yt-fallback" id="yt-fallback">Si el reproductor no carga, <a href="https://youtu.be/MldGX_mbS-o" target="_blank" rel="noopener">ábrela en YouTube</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== NO SÉ QUÉ VIENE ========== -->
+<section id="futuro" class="future">
+  <div class="wrap">
+    <h2 class="reveal">No sé qué viene después...</h2>
+    <p class="reveal">No quiero apresurar esta historia.</p>
+    <p class="reveal">No quiero ponerle un nombre antes de tiempo.</p>
+    <p class="reveal">No quiero que ninguno de los dos sienta que tiene que correr.</p>
+    <p class="reveal">Solamente quiero seguir descubriendo quién eres.</p>
+    <p class="reveal">Que sigamos compartiendo.</p>
+    <p class="reveal">Que sigamos creciendo.</p>
+    <p class="reveal">Y que podamos disfrutar de todo esto mientras sucede.</p>
+    <p class="reveal">Quizás eso sea suficiente por ahora.</p>
+    <p class="reveal">Y para mí... lo es. 🤍</p>
+  </div>
+</section>
+
+<!-- ========== FINAL ========== -->
+<section id="final" class="final">
+  <div class="floaters" data-floaters="18"></div>
+  <div class="wrap" id="final-lines">
+    <div class="fline">Gracias por llegar hasta aquí, Belén. 🌷</div>
+    <div class="fline">Quizás esta no sea una declaración perfecta...</div>
+    <div class="fline">...pero sí es una declaración sincera.</div>
+    <div class="fline big">Me importas.</div>
+    <div class="fline big">Me gusta tenerte cerca.</div>
+    <div class="fline">Y quiero seguir descubriendo esta historia contigo.</div>
+    <div class="fline sign">Con cariño,<br><span id="sender"></span></div>
+    <div class="fline emoji" aria-hidden="true">🤍 ✨ 🌷 🫶🏻 ✨ 🤍</div>
+  </div>
+</section>
+
+<footer>Hecho con cariño · nada de esta página se guarda ni se envía</footer>
+</main>
+
+<nav class="dock" id="dock" aria-label="Navegación">
+  <a href="#carta" aria-label="Carta">💌</a>
+  <a href="#momentos" aria-label="Momentos">🤍</a>
+  <a href="#palabras" aria-label="Palabras">🌷</a>
+  <a href="#gimnasio" aria-label="Gimnasio">🏋🏻‍♂️</a>
+  <a href="#pregunta" aria-label="Pregunta">✨</a>
+  <a href="#cancion" aria-label="Canción">🎧</a>
+  <a href="#final" aria-label="Final">🫶🏻</a>
+</nav>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============ CONFIGURACIÓN ============ */
+const SENDER_NAME = "[MI NOMBRE]";      // <- cambia esto por tu nombre
+const EXPECTED = "belen";               // nombre esperado (sin tildes, minúsculas)
+const YT_ID = "MldGX_mbS-o";
+const LETTER = `Belén,
+
+No sé muy bien cómo comenzar esta carta, porque probablemente escribir todo esto me resulta mucho más fácil que decirlo mirándote a los ojos.
+
+Cuando comenzamos a compartir horarios en el gimnasio, siendo sincero, tuve un poco de miedo. Soy una persona bastante cerrada, algo pesada a veces y no siempre dejo que los demás conozcan fácilmente lo que llevo dentro.
+
+Pero tú hiciste algo que todavía me sorprende.
+
+Pudiste mirar un poquito más allá de todo eso.
+
+Y poco a poco empezamos a conocernos.
+
+Entre entrenamientos, conversaciones, risas, historias de vida y esos pequeños momentos que quizás parecen simples, terminé descubriendo a una persona muy linda, tierna y especial.
+
+Y creo que eso es lo que más me gusta de todo esto.
+
+Que contigo he podido ser un poco más yo.
+
+Me has ayudado a conocer partes de mí que quizás ni siquiera estaba acostumbrado a mirar, y también has estado ahí apoyándome, incluso en algo tan sencillo pero importante para mí como seguir avanzando en el gimnasio.
+
+Quizás no te imaginas cuánto valoro eso.
+
+También me gusta que podamos compartir nuestras historias, entendernos, escucharnos y ayudarnos mutuamente.
+
+En tan poco tiempo siento que hemos podido crecer un poquito juntos como personas.
+
+Y eso, para mí, es algo muy bonito.
+
+Quiero ser sincero contigo también.
+
+Sé que hemos hablado sobre formalizar las cosas y sé que quizás esta parte de mí puede resultar ambigua o incluso incómoda.
+
+La verdad es que todavía tengo miedo.
+
+Tengo mis propias historias, mis inseguridades y cosas que todavía estoy aprendiendo a entender.
+
+Y aunque quizás en este momento no estoy listo para darte una relación formal como quizás podrías esperar, no quiero que eso haga que pienses que no valoro lo que tenemos.
+
+Porque sí lo valoro.
+
+Muchísimo.
+
+No quiero prometerte algo solamente por miedo a perderte.
+
+Prefiero ser honesto y decirte que, por ahora, lo que puedo ofrecerte es seguir estando aquí.
+
+Seguir conociéndonos.
+
+Seguir compartiendo.
+
+Seguir ayudándonos.
+
+Seguir riéndonos.
+
+Seguir entrenando juntos.
+
+Y seguir viendo hacia dónde nos lleva todo esto.
+
+Quizás no tengo todas las respuestas todavía.
+
+Pero sí sé algo.
+
+Me gusta tenerte cerca.
+
+Me gusta compartir contigo.
+
+Y me gusta la persona que estoy descubriendo cuando estoy a tu lado.
+
+Así que perdón si alguna vez sentiste que esperaba menos de ti o que quizás te estaba haciendo perder el tiempo.
+
+Nunca ha sido mi intención.
+
+Solamente estoy intentando avanzar a mi propio ritmo, mientras aprendo a conocerme y también a conocerte.
+
+Gracias por haber llegado.
+
+Gracias por acercarte.
+
+Gracias por verme un poquito más allá de esa persona cerrada y pesada que quizás conociste al principio.
+
+Y gracias por hacer que estos días tengan algo diferente.
+
+No sé exactamente qué será todo esto mañana.
+
+Pero hoy...
+
+Hoy me hace feliz compartirlo contigo.
+
+Y quería que lo supieras.
+
+🤍`;
+
+const WORDS = [
+  ["Tierna 🌷","Porque tienes una forma muy bonita de hacer sentir acompañado a alguien."],
+  ["Linda 🤍","Y no solamente por fuera. Hay algo en tu forma de ser que me gusta muchísimo."],
+  ["Fuerte 🌱","Porque también tienes tus propias historias y aun así sigues avanzando."],
+  ["Especial ✨","Porque no cualquiera consigue que alguien como yo baje un poquito sus defensas."],
+  ["Compañera 🫶🏻","Porque entrenar, conversar y compartir contigo se ha vuelto algo que disfruto muchísimo."]
+];
+
+/* ============ UTILIDADES ============ */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const small = matchMedia("(max-width:720px)").matches;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();
+
+$("#sender").textContent = SENDER_NAME;
+
+function makeFloaters(){
+  const icons = ["🤍","🌸","✨","🌷","💗","·"];
+  $$(".floaters").forEach(box => {
+    if (reduce) return;
+    let n = +box.dataset.floaters; if (small) n = Math.ceil(n*.6);
+    for (let i=0;i<n;i++){
+      const s = document.createElement("span");
+      s.className = "fl"; s.textContent = icons[i % icons.length]; s.setAttribute("aria-hidden","true");
+      s.style.cssText = `--x:${Math.random()*96}%;--s:${12+Math.random()*16}px;--d:${14+Math.random()*14}s;--dl:${-Math.random()*20}s;--dx:${(Math.random()*120-60)}px;--r:${Math.random()*360-180}deg`;
+      box.appendChild(s);
+    }
+  });
+}
+makeFloaters();
+
+function burst(x, y, n=12, set=["🤍","💗","✨","🌸"]){
+  if (reduce) return;
+  for (let i=0;i<n;i++){
+    const b = document.createElement("span");
+    b.className = "burst"; b.textContent = set[i % set.length]; b.setAttribute("aria-hidden","true");
+    const a = Math.random()*Math.PI*2, d = 60+Math.random()*110;
+    b.style.left = x+"px"; b.style.top = y+"px";
+    b.style.setProperty("--bx", Math.cos(a)*d+"px"); b.style.setProperty("--by", (Math.sin(a)*d-40)+"px");
+    document.body.appendChild(b); setTimeout(()=>b.remove(), 1600);
+  }
+}
+const centerOf = el => { const r = el.getBoundingClientRect(); return [r.left+r.width/2, r.top+r.height/2]; };
+
+let toastTimer;
+function toast(msg, ms=3800){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove("show"), ms);
+}
+
+/* ============ PANTALLA INICIAL ============ */
+const gate = $("#gate"), input = $("#name"), gmsg = $("#gate-msg");
+async function tryUnlock(){
+  if (norm(input.value) === EXPECTED){
+    input.disabled = true; $("#open-btn").disabled = true;
+    gmsg.textContent = "🤍";
+    burst(...centerOf($("#gate-card")), 22);
+    gate.classList.add("opening");
+    await sleep(reduce ? 50 : 1500);
+    gate.hidden = true;
+    document.body.classList.remove("locked");
+    $("#main").classList.add("on");
+    window.scrollTo(0,0);
+    startLetter();
+  } else {
+    const card = $("#gate-card");
+    card.classList.remove("shake"); void card.offsetWidth; card.classList.add("shake");
+    gmsg.textContent = "Mmm... creo que esta carta tiene una destinataria muy especial 👀🌷";
+    input.select();
+  }
+}
+$("#open-btn").addEventListener("click", tryUnlock);
+input.addEventListener("keydown", e => { if (e.key === "Enter") tryUnlock(); });
+
+/* ============ CARTA ============ */
+let letterDone = false, skip = false, started = false;
+function finishLetter(){
+  letterDone = true;
+  $("#skip-btn").hidden = true;
+  $("#letter-end").classList.add("show");
+}
+async function startLetter(){
+  if (started) return; started = true;
+  $("#paper").classList.add("letter-open");
+  const box = $("#letter");
+  const paras = LETTER.split("\n\n");
+  if (reduce){ paras.forEach(t => addPara(box, t, t)); finishLetter(); return; }
+  await sleep(900);
+  for (const t of paras){
+    if (skip) break;
+    const p = addPara(box, "", t);
+    const c = document.createElement("span"); c.className = "caret"; p.appendChild(c);
+    for (let i=1;i<=t.length;i++){
+      if (skip) break;
+      p.firstChild.textContent = t.slice(0,i);
+      await sleep(t.length < 40 ? 38 : 17);
+    }
+    c.remove();
+    if (!skip) await sleep(t.length < 40 ? 500 : 300);
+  }
+  if (skip){ box.innerHTML = ""; paras.forEach(t => addPara(box, t, t)); }
+  finishLetter();
+}
+function addPara(box, text, full){
+  const p = document.createElement("p");
+  if (full.length < 40) p.className = "short";
+  p.appendChild(document.createTextNode(text));
+  box.appendChild(p); return p;
+}
+$("#skip-btn").addEventListener("click", () => {
+  skip = true;
+  if (!started){ started = true; $("#paper").classList.add("letter-open"); const box=$("#letter"); LETTER.split("\n\n").forEach(t=>addPara(box,t,t)); finishLetter(); }
+});
+
+/* ============ TARJETAS + EASTER EGG CORAZÓN ============ */
+$$(".card").forEach(c => {
+  c.addEventListener("click", () => c.classList.toggle("lit"));
+  c.addEventListener("keydown", e => { if (e.key==="Enter"||e.key===" "){ e.preventDefault(); c.classList.toggle("lit"); }});
+});
+let hearts = 0;
+$("#secret-heart").addEventListener("click", async e => {
+  hearts++;
+  burst(e.clientX, e.clientY, 4);
+  if (hearts === 5){
+    toast("Encontraste un pequeño secreto. 🤫🤍", 3200);
+    await sleep(3400);
+    toast("La verdad es que probablemente esta página nunca podría explicar todo lo que siento...", 5500);
+    hearts = 0;
+  }
+});
+
+/* ============ PALABRAS ============ */
+const wbox = $("#words"), wdesc = $("#word-desc");
+WORDS.forEach(([w,d],i) => {
+  const b = document.createElement("button");
+  b.className = "word"; b.type = "button"; b.textContent = w; b.setAttribute("aria-pressed","false");
+  b.style.setProperty("--dl", (i*-1.1)+"s");
+  b.addEventListener("click", () => {
+    $$(".word").forEach(x => x.setAttribute("aria-pressed","false"));
+    b.setAttribute("aria-pressed","true"); wdesc.textContent = d;
+  });
+  wbox.appendChild(b);
+});
+
+/* ============ GIMNASIO ============ */
+let gymClicks = 0;
+$("#gym-icon").addEventListener("click", () => {
+  gymClicks++;
+  if (gymClicks >= 5){ toast("Sí, sí... ya entendí. También tenemos que entrenar mañana. 😂🏋🏻‍♂️", 4500); gymClicks = 0; }
+});
+let gymPlayed = false;
+async function playGym(){
+  if (gymPlayed) return; gymPlayed = true;
+  const stage = $("#stage"), ph = $$("#phrases span");
+  if (reduce){ stage.classList.add("up"); ph.forEach(s=>s.classList.add("show")); return; }
+  stage.classList.add("up");
+  for (const s of ph){ await sleep(1500); s.classList.add("show"); }
+}
+
+/* ============ PREGUNTA ============ */
+$("#ask-btn").addEventListener("click", e => {
+  $("#envelope").classList.add("open"); e.currentTarget.parentElement.hidden = true;
+  $("#answers button").focus({preventScroll:true});
+});
+$$("[data-ans]").forEach(b => b.addEventListener("click", () => {
+  $("#answers").hidden = true; $("#thanks").hidden = false;
+  burst(...centerOf($("#thanks")), 20);
+}));
+
+/* ============ MÚSICA ============ */
+const viz = $("#viz");
+for (let i=0;i<18;i++){ const b = document.createElement("i"); b.style.setProperty("--n", i); b.style.setProperty("--h", 10+Math.random()*24); viz.appendChild(b); }
+let yt, ytLoading = false, wantPlay = false;
+function loadYT(){
+  if (ytLoading) return; ytLoading = true;
+  const s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api";
+  s.onerror = () => $("#yt-fallback").style.display = "block";
+  document.head.appendChild(s);
+  setTimeout(() => { if (!yt) $("#yt-fallback").style.display = "block"; }, 6000);
+}
+window.onYouTubeIframeAPIReady = () => {
+  yt = new YT.Player("yt", {
+    videoId: YT_ID, host: "https://www.youtube-nocookie.com",
+    playerVars: { playsinline:1, rel:0, modestbranding:1 },
+    events: {
+      onReady: () => { if (wantPlay) yt.playVideo(); },
+      onStateChange: e => setPlaying(e.data === 1),
+      onError: () => $("#yt-fallback").style.display = "block"
+    }
+  });
+};
+function setPlaying(on){
+  $("#player").classList.toggle("playing", on);
+  const b = $("#play-btn"); b.textContent = on ? "❚❚ Pausar" : "▶ Reproducir"; b.setAttribute("aria-pressed", on);
+}
+$("#play-btn").addEventListener("click", () => {
+  loadYT();
+  if (!yt || !yt.getPlayerState){ wantPlay = true; return; }
+  yt.getPlayerState() === 1 ? yt.pauseVideo() : yt.playVideo();
+});
+
+/* ============ FINAL ============ */
+let finalPlayed = false;
+async function playFinal(){
+  if (finalPlayed) return; finalPlayed = true;
+  const lines = $$("#final-lines .fline");
+  for (const l of lines){ l.classList.add("show"); if(!reduce) await sleep(l.classList.contains("big") ? 2600 : 2200); }
+}
+
+/* ============ OBSERVADORES ============ */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }}), {threshold:.15});
+$$(".reveal").forEach(el => io.observe(el));
+
+const trig = (sel, fn, th=.35) => {
+  const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ fn(); o.disconnect(); }}), {threshold:th});
+  o.observe($(sel));
+};
+trig("#stage", playGym, .6);
+trig("#final-lines", playFinal, .25);
+new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting){ loadYT(); o.disconnect(); }}), {rootMargin:"400px"}).observe($("#cancion"));
+
+/* navegación fija: aparece al llegar a la pregunta */
+new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) $("#dock").classList.add("show"); }), {threshold:.2}).observe($("#pregunta"));
+</script>
+</body>
+</html>
