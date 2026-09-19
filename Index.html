@@ -34,12 +34,10 @@ section{position:relative;padding:5.5rem 1.25rem;overflow:hidden}
 .wide{max-width:1000px}
 .center{text-align:center}
 
-/* ---------- floaters ---------- */
 .floaters{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:1}
 .fl{position:absolute;bottom:-40px;left:var(--x);font-size:var(--s);opacity:0;animation:rise var(--d) linear var(--dl) infinite;filter:drop-shadow(0 2px 4px rgba(232,154,168,.35))}
 @keyframes rise{0%{transform:translate3d(0,0,0) rotate(0);opacity:0}10%{opacity:.75}90%{opacity:.6}100%{transform:translate3d(var(--dx),-110vh,0) rotate(var(--r));opacity:0}}
 
-/* ---------- gate ---------- */
 #gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:1.5rem;
   background:radial-gradient(120% 90% at 50% 0%,#fff 0%,var(--blush) 45%,var(--pastel) 100%);
   transition:opacity 1.6s ease,filter 1.6s ease,transform 1.6s ease}
@@ -63,7 +61,6 @@ section{position:relative;padding:5.5rem 1.25rem;overflow:hidden}
 .shake{animation:shake .5s}
 @keyframes shake{20%{transform:translateX(-9px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(3px)}}
 
-/* ---------- main ---------- */
 main{opacity:0;transition:opacity 1.2s ease .3s}
 main.on{opacity:1}
 .bg-blush{background:linear-gradient(180deg,var(--white),var(--blush))}
@@ -84,7 +81,6 @@ main.on{opacity:1}
 .letter-end{font-family:var(--serif);font-style:italic;font-size:1.5rem;text-align:center;margin-top:1.8rem;opacity:0;transition:opacity 1.4s}
 .letter-end.show{opacity:1}
 
-/* cards */
 .cards{display:grid;grid-template-columns:1fr;gap:1.1rem;margin-top:2.4rem}
 .card{position:relative;padding:1.8rem 1.5rem;border-radius:22px;background:rgba(255,255,255,.75);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border:1px solid rgba(244,182,194,.45);box-shadow:0 6px 24px rgba(232,154,168,.14);cursor:pointer;transition:transform .35s,box-shadow .35s;text-align:left}
@@ -96,7 +92,6 @@ main.on{opacity:1}
 .secret-heart{display:block;margin:2.2rem auto 0;font-size:.85rem;opacity:.35;padding:.6rem;transition:opacity .3s}
 .secret-heart:hover{opacity:.9}
 
-/* words */
 .words{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem 1rem;margin:2rem 0 1.6rem}
 .word{padding:.8rem 1.6rem;border-radius:999px;font-family:var(--serif);font-size:1.6rem;background:var(--white);border:1.5px solid var(--soft);
   box-shadow:0 6px 18px rgba(232,154,168,.2);animation:bob 5s ease-in-out infinite;animation-delay:var(--dl);transition:background .3s,color .3s,border-color .3s}
@@ -104,7 +99,6 @@ main.on{opacity:1}
 @keyframes bob{50%{transform:translateY(-8px)}}
 .word-desc{min-height:5.5rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.4rem;max-width:520px;margin:0 auto}
 
-/* gym */
 .gym{background:linear-gradient(180deg,var(--blush),var(--pastel) 140%)}
 .gym .lead{font-size:1.05rem;text-align:center}
 .gym .lead p{margin-bottom:.9rem}
@@ -129,7 +123,6 @@ main.on{opacity:1}
 .answers .btn{width:100%;max-width:260px}
 .thanks{font-family:var(--serif);font-style:italic;font-size:1.6rem;margin-top:.6rem}
 
-/* music */
 .player{background:#fff;border-radius:26px;padding:1.8rem 1.4rem;box-shadow:var(--shadow);border:1px solid rgba(244,182,194,.4);text-align:center;position:relative;overflow:hidden}
 .player .quote{font-family:var(--serif);font-size:1.35rem;margin-bottom:1.4rem}
 .player .quote em{display:block;margin-top:.5rem}
@@ -147,7 +140,6 @@ main.on{opacity:1}
 .future .wrap{max-width:560px}
 .future p{font-family:var(--serif);font-size:1.4rem;margin-bottom:1.1rem;text-align:center}
 
-/* final */
 .final{min-height:100dvh;display:grid;place-items:center;text-align:center;background:linear-gradient(180deg,var(--blush),var(--white) 50%,var(--pastel));padding-bottom:8rem}
 .fline{opacity:0;transform:translateY(14px);transition:opacity 1.6s ease,transform 1.6s ease;font-family:var(--serif);font-size:clamp(1.5rem,5.5vw,2.2rem);margin-bottom:1.5rem;line-height:1.3}
 .fline.show{opacity:1;transform:none}
@@ -155,7 +147,6 @@ main.on{opacity:1}
 .fline.sign{font-size:1.7rem}
 .fline.emoji{font-size:1.4rem;letter-spacing:.3em}
 
-/* nav */
 .dock{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translate(-50%,120px);z-index:60;display:flex;gap:.2rem;padding:.35rem;
   border-radius:999px;background:rgba(255,255,255,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:var(--shadow);border:1px solid rgba(244,182,194,.5);transition:transform .8s}
 .dock.show{transform:translate(-50%,0)}
@@ -192,7 +183,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
 </head>
 <body class="locked">
 
-<!-- ========== PANTALLA INICIAL ========== -->
 <div id="gate" role="dialog" aria-labelledby="gate-title">
   <div class="floaters" data-floaters="16"></div>
   <div class="gate-card" id="gate-card">
@@ -207,7 +197,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
 
 <main id="main">
 
-<!-- ========== CARTA ========== -->
 <section id="carta" class="bg-blush">
   <div class="floaters" data-floaters="8"></div>
   <div class="wrap">
@@ -220,7 +209,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
   </div>
 </section>
 
-<!-- ========== MOMENTOS ========== -->
 <section id="momentos" class="bg-soft">
   <div class="wrap wide">
     <h2 class="reveal">Pequeños momentos que se volvieron importantes</h2>
@@ -235,7 +223,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
   </div>
 </section>
 
-<!-- ========== PALABRAS ========== -->
 <section id="palabras" class="bg-blush">
   <div class="floaters" data-floaters="6"></div>
   <div class="wrap center">
@@ -246,7 +233,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
   </div>
 </section>
 
-<!-- ========== GIMNASIO ========== -->
 <section id="gimnasio" class="gym">
   <div class="wrap">
     <button class="gym-icon" id="gym-icon" type="button" aria-label="Icono de gimnasio">🏋🏻‍♂️</button>
@@ -280,7 +266,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
   </div>
 </section>
 
-<!-- ========== PREGUNTA ========== -->
 <section id="pregunta" class="bg-blush">
   <div class="floaters" data-floaters="6"></div>
   <div class="wrap center">
@@ -300,7 +285,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
   </div>
 </section>
 
-<!-- ========== CANCIÓN ========== -->
 <section id="cancion" class="bg-soft">
   <div class="wrap">
     <h2 class="reveal">Una canción para ti 🎧🤍</h2>
@@ -314,7 +298,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
   </div>
 </section>
 
-<!-- ========== NO SÉ QUÉ VIENE ========== -->
 <section id="futuro" class="future">
   <div class="wrap">
     <h2 class="reveal">No sé qué viene después...</h2>
@@ -330,7 +313,6 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
   </div>
 </section>
 
-<!-- ========== FINAL ========== -->
 <section id="final" class="final">
   <div class="floaters" data-floaters="18"></div>
   <div class="wrap" id="final-lines">
@@ -361,9 +343,8 @@ footer{text-align:center;padding:2rem 1rem 7rem;font-size:.8rem;opacity:.55}
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
-/* ============ CONFIGURACIÓN ============ */
-const SENDER_NAME = "[MI NOMBRE]";      // <- cambia esto por tu nombre
-const EXPECTED = "belen";               // nombre esperado (sin tildes, minúsculas)
+const SENDER_NAME = "Kevin";     
+const EXPECTED = ["belen", "Belen"];               
 const YT_ID = "MldGX_mbS-o";
 const LETTER = `Belén,
 
@@ -465,7 +446,6 @@ const WORDS = [
   ["Compañera 🫶🏻","Porque entrenar, conversar y compartir contigo se ha vuelto algo que disfruto muchísimo."]
 ];
 
-/* ============ UTILIDADES ============ */
 const $ = (s, r=document) => r.querySelector(s);
 const $$ = (s, r=document) => [...r.querySelectorAll(s)];
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -509,7 +489,6 @@ function toast(msg, ms=3800){
   clearTimeout(toastTimer); toastTimer = setTimeout(()=>t.classList.remove("show"), ms);
 }
 
-/* ============ PANTALLA INICIAL ============ */
 const gate = $("#gate"), input = $("#name"), gmsg = $("#gate-msg");
 async function tryUnlock(){
   if (norm(input.value) === EXPECTED){
@@ -533,7 +512,6 @@ async function tryUnlock(){
 $("#open-btn").addEventListener("click", tryUnlock);
 input.addEventListener("keydown", e => { if (e.key === "Enter") tryUnlock(); });
 
-/* ============ CARTA ============ */
 let letterDone = false, skip = false, started = false;
 function finishLetter(){
   letterDone = true;
@@ -573,7 +551,6 @@ $("#skip-btn").addEventListener("click", () => {
   if (!started){ started = true; $("#paper").classList.add("letter-open"); const box=$("#letter"); LETTER.split("\n\n").forEach(t=>addPara(box,t,t)); finishLetter(); }
 });
 
-/* ============ TARJETAS + EASTER EGG CORAZÓN ============ */
 $$(".card").forEach(c => {
   c.addEventListener("click", () => c.classList.toggle("lit"));
   c.addEventListener("keydown", e => { if (e.key==="Enter"||e.key===" "){ e.preventDefault(); c.classList.toggle("lit"); }});
@@ -590,7 +567,6 @@ $("#secret-heart").addEventListener("click", async e => {
   }
 });
 
-/* ============ PALABRAS ============ */
 const wbox = $("#words"), wdesc = $("#word-desc");
 WORDS.forEach(([w,d],i) => {
   const b = document.createElement("button");
@@ -618,7 +594,6 @@ async function playGym(){
   for (const s of ph){ await sleep(1500); s.classList.add("show"); }
 }
 
-/* ============ PREGUNTA ============ */
 $("#ask-btn").addEventListener("click", e => {
   $("#envelope").classList.add("open"); e.currentTarget.parentElement.hidden = true;
   $("#answers button").focus({preventScroll:true});
@@ -660,7 +635,6 @@ $("#play-btn").addEventListener("click", () => {
   yt.getPlayerState() === 1 ? yt.pauseVideo() : yt.playVideo();
 });
 
-/* ============ FINAL ============ */
 let finalPlayed = false;
 async function playFinal(){
   if (finalPlayed) return; finalPlayed = true;
